@@ -1,19 +1,41 @@
 <template>
   <div class="container">
-    <Messages />
+    <div class="chats-layout">
+      <Messages />
+    </div>
+    <div class="input-layout">
+      <Chat-form />
+    </div>
   </div>
 </template>
 
 <script>
 import Messages from '~/components/Messages.vue'
+import ChatForm from '~/components/ChatForm.vue'
 
 export default {
   components: {
-    Messages
+    Messages,
+    ChatForm
   }
 }
 </script>
 
 <style  scoped>
+
+.container {
+  height: 100%;
+}
+
+.chats-layout {
+  overflow: scroll;
+  height: 90%;
+}
+
+.input-layout {
+  height: 10%;
+}
+
+
 
 </style>
