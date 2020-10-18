@@ -1,3 +1,6 @@
+とだこうきさんのnote教材での学習用
+https://note.com/cohki0305/n/ne21cd96137ec
+
 # slack-clone-app
 
 > My phenomenal Nuxt.js project

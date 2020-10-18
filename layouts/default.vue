@@ -12,6 +12,34 @@
   </div>
 </template>
 
+<script>
+import {db} from '~/plugins/firebase'
+
+
+export default {
+  data () {
+    return {
+      channels: []
+    }
+  },
+  mounted () {
+    // db.collection('channels').doc('WbYsbqUYSHXqQd6fdcmE').get()
+    // .then((doc) => {
+    //   console.log('doc.id:', doc.id)
+    //   console.log('doc.data():', doc.data())
+    // })
+    db.collection('channels').get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          this.channels.push(doc.data())
+          // console.log(doc.id, "=>", doc.data())
+        })
+          console.log(this.channels)
+      })
+  }
+}
+</script>
+
 <style>
 .app-layout {
   display: flex;
