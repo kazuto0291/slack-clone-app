@@ -1,6 +1,11 @@
 <template>
   <div class="container">
-    
+    <div class="chats-layout">
+      <Messages />
+    </div>
+    <div class="input-layout">
+      <Chat-form />
+    </div>
   </div>
 </template>
 
@@ -12,6 +17,10 @@ export default {
   components: {
     Messages,
     ChatForm
+  },
+  mounted () {
+    const channelId = this.$route.params.id
+    db.collection('channels').doc(channelId).collection('messages')
   }
 }
 </script>
