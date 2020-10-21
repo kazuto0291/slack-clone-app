@@ -1,17 +1,26 @@
 <template>
   <div class="container">
-    
+    <button v-on:click="login">ログイン</button>
   </div>
 </template>
 
 <script>
-import Messages from '~/components/Messages.vue'
-import ChatForm from '~/components/ChatForm.vue'
+import { firebase } from '~/plugins/firebase'
+
 
 export default {
-  components: {
-    Messages,
-    ChatForm
+  methods: {
+    login() {
+      window.alert('ログインするよ')
+      const provider = new firebase.auth.GoogleAuthProvider()
+      firebase.auth().signInWithPopup(provider)
+        .then((result) => {
+          const user = result.user
+          console.log(user)
+        }).catch((error) => {
+          window.alert(error)
+        })
+    }
   }
 }
 </script>
