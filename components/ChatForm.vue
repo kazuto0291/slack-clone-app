@@ -1,6 +1,7 @@
 <template>
   <div class="input-container">
-    <textarea v-model="text" v-on:click="openLoginModel" v-on:keydown.enter="addMessage"></textarea>
+    <textarea v-model="text" v-if="isAuthenticated" v-on:keydown.enter="addMessage"></textarea>
+    <textarea v-model="text" v-else v-on:click="openLoginModel"></textarea>
     <el-dialog
       title=""
       :visible.sync="dialogVisible"
@@ -16,7 +17,7 @@
 import { db, firebase } from '~/plugins/firebase'
 
 import Vue from 'vue'
-import { mapMutations } from 'vuex'
+import { mapActions } from 'vuex'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
@@ -28,11 +29,16 @@ export default {
       text: null
     }
   },
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters.isAuthenticated
+    }
+  },
   mounted() {
     // console.log(this.$store.getters.isAuthenticated)
   },
   methods: {
-    ...mapMutations(['setUser']),
+    ...mapActions(['setUser']),
     openLoginModel () {
       this.dialogVisible =true
     },
